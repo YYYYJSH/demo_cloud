@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    dynamic:
+      primary: activity
+      p6spy: false
+      # 配置hikari 连接池
+      hikari:
+        connection-timeout: 60000
+        max-lifetime: 28000000
+        idle-timeout: 600000
+        max-pool-size: 3
+        min-idle: 1
+        leak-detection-threshold: 10000
+        connection-test-query: select 1
+      datasource:
+        account:
+          url: jdbc:mysql://127.0.0.1:3306/myjk_account?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        activity:
+          url: jdbc:mysql://127.0.0.1:3306/myjk_activity?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8087
+
+logging:
+  level:
+    com.yjsh.mapper: debug
+  pattern:
+    console: "%clr(%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} traceId:[%X{traceId}] %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+
+management:
+  health:
+    redis:
+      enabled: false

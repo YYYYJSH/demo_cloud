@@ -1,2 +1,2 @@
 # demo_cloud
-Spring Cloud Demo
+Spring Cloud demo

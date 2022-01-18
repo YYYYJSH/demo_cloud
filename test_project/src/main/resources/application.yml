@@ -1,0 +1,63 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    dynamic:
+      primary: bug
+      p6spy: false
+      # 配置hikari 连接池
+      hikari:
+        connection-timeout: 60000
+        max-lifetime: 28000000
+        idle-timeout: 600000
+        max-pool-size: 3
+        min-idle: 1
+        leak-detection-threshold: 10000
+        connection-test-query: select 1
+      datasource:
+        bug:
+          url: jdbc:mysql://127.0.0.1:3306/bug?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        fmd:
+          url: jdbc:mysql://127.0.0.1:3306/dfsw_fmd?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+  elasticsearch:
+    rest:
+      uris: 127.0.0.1:9200
+server:
+  port: 8086
+
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#
+#mybatis:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    com.yjsh.mapper: debug
+    org:
+      springframework:
+        boot:
+          actuate:
+            endpoint:
+              EndpointId: error
+  pattern:
+    console: "%clr(%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} traceId:[%X{traceId}] %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+management:
+  metrics:
+    export:
+      elastic:
+        host: 127.0.0.1:9200
+
+rocketmq:
+  name-server: 192.168.86.154:9876
+  producer:
+    send-message-timeout: 10000
+    group: GROUP-ORDERS
