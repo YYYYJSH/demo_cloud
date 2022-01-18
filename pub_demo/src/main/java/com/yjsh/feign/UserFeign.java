@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date 2021-12-16 14:03
  **/
 @FeignClient(
-        name = "test-project"
+        name = "test-demo"
 )
 public interface UserFeign {
 

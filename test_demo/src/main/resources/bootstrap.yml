@@ -1,0 +1,52 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: test_demo
+#  profiles:
+#    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP   # 默认为DEFAULT_GROUP
+        enabled: false
+        name: ${spring.application.name}
+#        cluster-name: test_project.yaml
+
+
+server:
+  port: 8086
+#ribbon:
+#  ReadTimeout: 10000
+#  ConnectionTimeout: 10000
+
+nacos:
+  config:
+    enabled: false
+    server-addr: 127.0.0.1:8848
+
+#seata:
+#  enabled: true
+#  tx-service-group: ${sit.seata.tx-service-group}
+#  enable-auto-data-source-proxy: false
+#  registry:
+#    type: nacos
+#    nacos:
+#      server-addr: ${sit.nacos-server-addr}
+#      application: ${sit.seata.application-server-name}
+#      namespace: ${sit.seata.config-namespace}
+#      group: ${sit.seata.config-group}
+#      username: ""
+#      password: ""
+#  config:
+#    type: nacos
+#    nacos:
+#      server-addr: ${sit.nacos-server-addr}
+#      namespace: ${sit.seata.config-namespace}
+#      group: ${sit.seata.config-group}
+#      username: ""
+#      password: ""

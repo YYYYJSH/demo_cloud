@@ -22,7 +22,7 @@
 
     <!--子模块-->
     <modules>
-        <module>test_project</module>
+        <module>test_demo</module>
         <module>account_demo</module>
         <module>pub_demo</module>
     </modules>

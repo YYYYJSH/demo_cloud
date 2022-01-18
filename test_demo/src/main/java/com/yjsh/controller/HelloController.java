@@ -87,6 +87,32 @@ public class HelloController {
         return R.ok("s");
     }
 
+
+
+    @GetMapping("/5")
+    public R sendSaleMq(HttpServletRequest request) {
+        Map<String,String> param = new HashMap<>();
+//        param.put("type","3");//这里是推送统计订单的类型
+//        param.put("memberNum","新注册用户数量");
+//        param.put("orderNum","这里是订单数量");
+////        param.put("time","这里是统计日期");
+//        param.put("orderAmountSum", "这里是销售额");
+
+//        param.put("type","1");
+        param.put("type","2");
+        param.put("projectName","name");
+        param.put("environment","env");
+        param.put("message","registry + \n +1 \n +2 \n +3 \n +4 \n +5 \n +6 \n +6 \n +7 +\n +8 +\n +9 +\n +10 +\n +11 " +""
+                );
+
+
+        Message<Map<String,String>> message = MessageBuilder
+                .withPayload(param)
+                .build();
+        rocketMQTemplate.send("COUNT_ORDER_AND_USER",message);
+        return R.ok("s");
+    }
+
     @PostMapping ("/6")
     public R testCode(HttpServletRequest request, HttpServletResponse response){
         String test = null;

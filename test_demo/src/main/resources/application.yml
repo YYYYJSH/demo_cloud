@@ -57,7 +57,7 @@ management:
         host: 127.0.0.1:9200
 
 rocketmq:
-  name-server: 192.168.86.154:9876
+  name-server: http://127.0.0.1:9876
   producer:
     send-message-timeout: 10000
     group: GROUP-ORDERS
