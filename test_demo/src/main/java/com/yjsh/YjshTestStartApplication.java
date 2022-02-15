@@ -16,7 +16,7 @@ import java.net.UnknownHostException;
  */
 @EnableDiscoveryClient
 @EnableFeignClients
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.yjsh.**")
 public class YjshTestStartApplication {
 
     public static void main(String[] args) {

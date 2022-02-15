@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/md5.js"></script>
+</head>
+<body>
+    <input type="text" id="uid" placeholder="请输入你的id"/><br>
+    <button onclick="onConnectionClick();">连接服务器</button><br>
+    <input type="text" id="targetId" placeholder="请输入对方的id"/><br>
+    <input type="text" id="message" placeholder="请输入聊天内容"/><br>
+    <button onclick="onSendClick();">发送</button>
+    <div id="msgs">
+
+
+    </div>
+    <script>
+
+
+        let socket;
+        function onConnectionClick(){
+            if(typeof(WebSocket) == "undefined"){
+                //浏览器不支持websocket
+                console.log("浏览器不支持websocket");
+            }else{
+                console.log("浏览器支持websocket");
+                if(socket!=null){
+                    socket.close();
+                    socket=null;
+                }
+                //建立连接对象
+                //给服务器说明我是谁
+                let uid=document.getElementById("uid").value;
+                let url="ws://192.168.86.154:8086/webSocket/"+uid;
+                socket=new WebSocket(url);
+                socket.onopen=function(){
+                    console.info("websocket连接成功")
+                };
+                socket.onmessage=function(msg){
+                    console.info(msg.data);
+                    let receiveMessage=msg.data;
+                    document.getElementById("msgs").innerHTML+=
+                        "<span>对方说："+receiveMessage+"</span>"+"<br>";
+                };
+                socket.onclose=function(){
+                    console.info("连接关闭了")
+                };
+                socket.onerror=function(){
+                    console.info("连接出现异常")
+                };
+                alert("连接成功");
+            }
+        }
+        function onSendClick(){
+            //获取发送信息
+            let message= document.getElementById("message").value;
+            //获取接收人id
+            let targetId= document.getElementById("targetId").value;
+            //id
+            let uid = document.getElementById("uid").value;
+            //拼装成json请求服务器
+            let url="http://192.168.86.154:8086/push/send";
+            let requestJson={
+                "uid":targetId,
+                "message":message,
+                "type":1,
+                "requestId":uid
+            };
+            $.rest("post",url,requestJson,function(data){
+                console.info(data);
+                if(data.code==200){
+                    document.getElementById("msgs").innerHTML+=
+                        "<span>我说："+message+"</span>"+"<br>";
+                    document.getElementById("message").value="";
+                }
+
+            })
+        }
+    </script>
+</body>
+</html>

@@ -25,12 +25,25 @@ spring:
           username: root
           password: root
           driver-class-name: com.mysql.cj.jdbc.Driver
+        talk:
+          url: jdbc:mysql://127.0.0.1:3306/push_service?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
   elasticsearch:
     rest:
       uris: 127.0.0.1:9200
-server:
+  resources:
+    static-locations: classpath:/static/,classpath:/views/
   port: 8086
-
+  mvc:
+    view:
+      suffix: .html
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+    prefix: classpath:/templates/
+    suffix: .html
 #mybatis-plus:
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -61,3 +74,6 @@ rocketmq:
   producer:
     send-message-timeout: 10000
     group: GROUP-ORDERS
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml ,dao/*.xml
