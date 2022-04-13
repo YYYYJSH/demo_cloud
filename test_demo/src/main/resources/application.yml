@@ -10,7 +10,7 @@ spring:
         connection-timeout: 60000
         max-lifetime: 28000000
         idle-timeout: 600000
-        max-pool-size: 3
+        max-pool-size: 15
         min-idle: 1
         leak-detection-threshold: 10000
         connection-test-query: select 1
@@ -58,7 +58,7 @@ logging:
     org:
       springframework:
         boot:
-          actuate:
+          actuate:Optional
             endpoint:
               EndpointId: error
   pattern:

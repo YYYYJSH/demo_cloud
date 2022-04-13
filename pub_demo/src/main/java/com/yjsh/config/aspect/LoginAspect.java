@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Lazy
 public class LoginAspect {
 
-    @Around(value = "@annotation(com.yjsh.config.NeedLogin) && args(Object,..)")
+    @Around(value = "@annotation(com.yjsh.config.NeedLogin)")
     public Object loginCheck(ProceedingJoinPoint proceedingJoinPoint
     ) throws Throwable {
 
