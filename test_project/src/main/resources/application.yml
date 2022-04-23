@@ -20,11 +20,11 @@ spring:
           username: root
           password: root
           driver-class-name: com.mysql.cj.jdbc.Driver
-        fmd:
-          url: jdbc:mysql://127.0.0.1:3306/dfsw_fmd?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
-          username: root
-          password: root
-          driver-class-name: com.mysql.cj.jdbc.Driver
+#        fmd:
+#          url: jdbc:mysql://127.0.0.1:3306/dfsw_fmd?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
+#          username: root
+#          password: root
+#          driver-class-name: com.mysql.cj.jdbc.Driver
   elasticsearch:
     rest:
       uris: 127.0.0.1:9200
@@ -57,7 +57,7 @@ management:
         host: 127.0.0.1:9200
 
 rocketmq:
-  name-server: 192.168.86.154:9876
+  name-server: 127.0.0.1:9876
   producer:
     send-message-timeout: 10000
     group: GROUP-ORDERS

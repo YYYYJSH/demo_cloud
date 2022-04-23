@@ -77,9 +77,13 @@ public class HelloController {
 
 
     @GetMapping("/mq")
-    public R sendMq(HttpServletRequest request) {
+    public R sendMq(HttpServletRequest request,@RequestParam("msg")String msg) {
         Map<String,String> param = new HashMap<>();
-        param.put("xx","xx");//
+
+        param.put("第一个参数","this is param1");//
+        param.put("第二个参数","this is param2");//
+
+
         Message<Map<String,String>> message = MessageBuilder
                 .withPayload(param)
                 .build();

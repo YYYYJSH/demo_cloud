@@ -38,3 +38,9 @@ management:
   health:
     redis:
       enabled: false
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    send-message-timeout: 10000
+    group: GROUP-ORDERS
