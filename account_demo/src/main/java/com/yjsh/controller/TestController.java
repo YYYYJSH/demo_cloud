@@ -1,7 +1,6 @@
 package com.yjsh.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.yjsh.config.NeedLogin;
 import com.yjsh.constant.R;
 import com.yjsh.service.TestService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +44,7 @@ public class TestController {
     }
 
 
-    @NeedLogin
+//    @NeedLogin
     @GetMapping("/queryUser")
     public R queryUser(@RequestParam("name") String name, @RequestParam("phone") String phone,
                           @RequestParam("page")Integer page, @RequestParam("limit")Integer limit){
